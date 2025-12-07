@@ -55,6 +55,7 @@ GET /title/utils/genres — Returns a list of genres supported by the API.
 GET /title/utils/lists — Returns predefined lists such as Top 250 and Most Popular.
 
 ## Request and Response Format
+
 General Response Structure
 Most endpoints return JSON in this format:
 {
@@ -75,6 +76,7 @@ Additional options include: image, rating, awards, revenue_budget, creators_dire
 
 Pagination
 limit — Items per page (default 10, max 50)
+
 page — Page number (default 1)
 
 
@@ -90,7 +92,9 @@ Authorization: Bearer <API_KEY>
 
 Important:
 Always confirm the required authentication method from your API provider dashboard.
+
 Never commit your API key to your repository.
+
 Store keys in environment variables and add .env to your .gitignore.
 
 ## Error Handling
@@ -98,22 +102,35 @@ Store keys in environment variables and add .env to your .gitignore.
 Common HTTP responses:
 
 200 OK — Request successful; process results.
+
 400 Bad Request — Invalid query parameter or malformed input.
+
 401 / 403 Unauthorized/Forbidden — Authentication missing or incorrect.
+
 404 Not Found — The requested ID or endpoint does not exist.
+
 429 Too Many Requests — Rate limit reached.
+
 5xx Server Errors — Temporary API issue; retry later.
 
 General handling guidelines:
+
 Validate user input before sending requests.
+
 Show meaningful error messages to the user.
+
 Retry failed requests (especially 429 or 5xx) with a delay.
 
 ## Usage Limits and Best Practices
 
 Use limit and page instead of requesting large datasets at once.
+
 Cache data that doesn’t change often (genres, title types, etc.).
+
 Fetch only the fields you need using the info parameter to reduce payload size.
+
 Monitor your request usage to avoid exceeding rate limits.
+
 Handle all HTTP errors gracefully.
+
 Keep your API keys secure and never expose them in client-side code.
